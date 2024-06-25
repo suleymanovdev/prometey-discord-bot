@@ -20,27 +20,28 @@ from bs4 import BeautifulSoup
 # +----------------------------------+ SETTINGS +----------------------------------+
 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all(), case_insensitive=True)
-logging.basicConfig
-(
-    level:=logging.DEBUG,
-    format:="%(asctime)s | %(levelname)s | %(message)s",
-    filename:="log.txt"
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+    filename="log.txt"
 )
 
 cwd = Path(__file__).parents[0]
 cwd = str(cwd)
 time_now = datetime.now()
-SECRET_FILE = json.load(open(cwd + '/secrets.json'))
-bot.config_token = SECRET_FILE['token']
+
+bot.config_token = os.getenv('TOKEN')
+owm_key = os.getenv('OWM_KEY')
+openai_key = os.getenv('OPENAI_KEY')
+vers_id = os.getenv('ID')
+version = os.getenv('VERSION')
+
 bot.remove_command('help')
 bot.remove_command('weather')
 bot.remove_command('timer')
-owm_key = SECRET_FILE['owm_key']
-openai_key = SECRET_FILE['openai_key']
+
 owm = OWM(owm_key)
 mgr = owm.weather_manager()
-vers_id = SECRET_FILE['id']
-version = SECRET_FILE['version']
 
 # +------------------------------------+ STATUS +----------------------------------+
 
@@ -57,7 +58,7 @@ async def on_ready():
            Commands: {len(synced)}
            Bot by sud3v_1s_h3r3
         •—————————————————————————————————————•
-	"""
+    """
     print(stats)
     await bot.change_presence(activity=discord.Game(name=f"{version} | /help \n https://theprometey.xyz/discord-bot"))
 
