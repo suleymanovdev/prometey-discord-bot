@@ -50,6 +50,4 @@ jobs:
         ID: ${{ secrets.ID }}
         VERSION: ${{ secrets.VERSION }}
       run: |
-        python3 bot.py &
-        sleep 30  # Run for 30 seconds, adjust as needed for testing
-        pkill -f bot.py  # Terminate the bot
+        python3 bot.py
