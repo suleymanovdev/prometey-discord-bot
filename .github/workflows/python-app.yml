@@ -50,6 +50,14 @@ jobs:
         ID: ${{ secrets.ID }}
         VERSION: ${{ secrets.VERSION }}
       run: |
-        python3 bot.py &
+        nohup python3 bot.py &
         sleep 30
         pkill -f bot.py
+    - name: Check bot log
+      run: |
+        if grep -i "error" nohup.out; then
+          echo "Bot encountered an error." >&2
+          exit 1
+        else
+          echo "Bot ran successfully."
+        fi
