@@ -26,6 +26,19 @@ The following modules are imported in the Prometey Discord Bot project:
 * `pyowm`: Python wrapper for the OpenWeatherMap API.
 * `bs4.BeautifulSoup`: Library for parsing HTML and XML documents.
 
+## First Steps
+You should use `.env` file to configure your bot data like this:
+
+```
+TOKEN="your_bot_token_here"
+OWM_KEY="your_owm_api_key_here"
+OPENAI_KEY="your_openai_api_key_here"
+ID="1.0.0 Pre-Beta"
+VERSION="Snake"
+```
+
+And after this changes yopu can easily run your bot.
+
 ## Settings
 
 The following settings are defined in the Prometey Discord Bot project:

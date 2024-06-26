@@ -3,13 +3,14 @@
 import discord
 import datetime
 from pathlib import Path
-import json
 import os
 import logging
 import openai
 import requests
 
+
 from datetime import datetime
+from dotenv import load_dotenv
 from discord import Member
 from discord import File
 from discord import app_commands
@@ -29,6 +30,8 @@ logging.basicConfig(
 cwd = Path(__file__).parents[0]
 cwd = str(cwd)
 time_now = datetime.now()
+
+load_dotenv()
 
 bot.config_token = os.getenv('TOKEN')
 owm_key = os.getenv('OWM_KEY')
